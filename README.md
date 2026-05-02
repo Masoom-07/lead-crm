@@ -1,14 +1,22 @@
 Lead Management CRM
 
-This is a full-stack mini CRM application built to manage sales leads efficiently. It allows users to add, update, filter, and analyze leads in a simple interface.
+A full-stack CRM application designed to manage and track sales leads efficiently.
+It provides a clean interface to create, update, filter, and analyze leads.
 
-The project is built using:
+Overview
 
-React for the frontend
-Node.js with Express for the backend
-PostgreSQL as the database
-Project Structure
+This project demonstrates a complete full-stack workflow using modern technologies:
+
+Frontend: React
+Backend: Node.js + Express
+Database: PostgreSQL
+
+It is structured to reflect real-world application architecture and can be extended easily.
+
+
+
 lead-crm/
+│
 ├── backend/
 │   ├── src/
 │   │   ├── server.js
@@ -35,30 +43,31 @@ lead-crm/
     ├── public/
     │   └── index.html
     └── package.json
-Prerequisites
 
-Make sure the following are installed on your system:
 
-Node.js (version 18 or later)
-PostgreSQL (version 13 or later)
-npm (comes with Node.js)
-Step 1 — Database Setup
+    Prerequisites
+
+Make sure your system has the following installed:
+
+Node.js (v18 or higher)
+PostgreSQL (v13 or higher)
+npm
+Database Setup
 Using pgAdmin
-Open pgAdmin
-Right-click on "Databases" and create a new database
-Name it lead_crm
-Open Query Tool for the database
-Run the SQL file located at backend/database/setup.sql
-Using Terminal (psql)
+Create a new database named lead_crm
+Open Query Tool
+Run the SQL file:
+backend/database/setup.sql
+Using Terminal
 psql -U postgres
 
 CREATE DATABASE lead_crm;
 \q
 
 psql -U postgres -d lead_crm -f backend/database/setup.sql
-Step 2 — Backend Configuration
+Backend Configuration
 
-Go to backend/.env and update the database credentials:
+Update the .env file inside the backend folder:
 
 PORT=5000
 DB_HOST=localhost
@@ -66,82 +75,70 @@ DB_PORT=5432
 DB_NAME=lead_crm
 DB_USER=postgres
 DB_PASSWORD=yourpassword
-
-Replace yourpassword with your actual PostgreSQL password.
-
-Step 3 — Run Backend
-
-Open terminal inside the backend folder:
-
+Running the Backend
 cd backend
 npm install
 npm run dev
 
-If everything is configured correctly, the server will start and connect to the database.
+Server will start at:
 
-You can verify by opening:
 http://localhost:5000
-
-Step 4 — Run Frontend
-
-Open another terminal:
-
+Running the Frontend
 cd frontend
 npm install
 npm start
 
-The frontend will run on:
-http://localhost:3000
+Application will run at:
 
-API Endpoints
+http://localhost:3000
+API Reference
+Endpoints
 Method	Endpoint	Description
 GET	/api/leads	Fetch all leads
-GET	/api/leads/stats	Get dashboard statistics
-GET	/api/leads/:id	Get a specific lead
-POST	/api/leads	Create a new lead
-PATCH	/api/leads/:id	Update lead details
-DELETE	/api/leads/:id	Delete a lead
+GET	/api/leads/stats	Fetch statistics
+GET	/api/leads/:id	Fetch single lead
+POST	/api/leads	Create new lead
+PATCH	/api/leads/:id	Update lead
+DELETE	/api/leads/:id	Delete lead
 Query Parameters
-search → filter by name or phone
-status → filter by lead status
-source → filter by source (call, whatsapp, field)
-sort → newest or oldest
-Example POST Request
+Parameter	Description
+search	Search by name or phone
+status	Filter by lead status
+source	Filter by source
+sort	newest or oldest
+Sample Request
+
+Create Lead
+
 {
   "name": "Rahul Sharma",
   "phone": "9876543210",
   "source": "call",
   "notes": "Interested in 2BHK"
 }
-Example PATCH Request
+
+Update Lead
+
 {
   "status": "Converted",
   "notes": "Deal closed"
 }
 Features
-Add new leads with basic details
-Input validation including phone number check
-View leads in a card layout
-Update lead status through stages
-Delete leads
-Dashboard with statistics
-Search functionality
-Filter by status and source
-Sort leads by time
-Troubleshooting
-
+Lead creation with validation
+Phone number format checking
+Card-based UI for lead display
+Lead status tracking
+Search and filtering
+Sorting functionality
+Dashboard analytics (conversion rate, counts)
+Delete and update operations
+Common Issues
 Backend not starting
-
-Check database credentials in .env
+Verify database credentials
 Ensure PostgreSQL service is running
-On Windows, verify from Services panel
-
-Frontend cannot fetch data
-
+Frontend not fetching data
 Confirm backend is running on port 5000
-Check browser console for errors
-
-Port already in use
-
-Change backend port in .env (e.g., 5001)
-React will prompt automatically for another port if needed
+Check browser console logs
+Port conflicts
+Change backend port in .env
+React will automatically suggest another port
